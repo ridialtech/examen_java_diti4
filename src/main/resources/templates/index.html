@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Espace locataire</title>
+    <title>Accueil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link" th:href="@{/immeubles}">Immeubles</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/unites}">Unités</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/locataires/espace}">Locataires</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/locataires}">Locataires</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/contrats}">Contrats</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/paiements}">Paiements</a></li>
                 <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
@@ -26,31 +26,8 @@
 </nav>
 
 <div class="container mt-4">
-    <h1>Offres disponibles</h1>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Numéro</th>
-            <th>Surface</th>
-            <th>Pièces</th>
-            <th>Loyer</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="offre : ${offres}">
-            <td th:text="${offre.numero}">101</td>
-            <td th:text="${offre.surface}">50</td>
-            <td th:text="${offre.pieces}">2</td>
-            <td th:text="${offre.loyer}">500</td>
-            <td>
-                <form th:action="@{/locataires/demandes/{id}(id=${offre.id})}" method="post">
-                    <button type="submit" class="btn btn-sm btn-primary">Demander</button>
-                </form>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <h1>Bienvenue dans l'application de gestion immobilière</h1>
+    <p>Sélectionnez un module dans la barre de navigation pour commencer.</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
