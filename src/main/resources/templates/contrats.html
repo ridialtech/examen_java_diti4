@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Contrats</title>
+</head>
+<body>
+<h1>Contrats</h1>
+<a th:href="@{/contrats/nouveau}">Nouveau contrat</a>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Locataire</th>
+        <th>Unité</th>
+        <th>Montant</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contrat : ${contrats}">
+        <td th:text="${contrat.id}">1</td>
+        <td th:text="${contrat.locataire.nom}">Nom</td>
+        <td th:text="${contrat.uniteLocation.numero}">101</td>
+        <td th:text="${contrat.montant}">500</td>
+        <td><a th:href="@{'/paiements/contrat/' + ${contrat.id}}">Paiements</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
