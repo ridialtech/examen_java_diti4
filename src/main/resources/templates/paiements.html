@@ -3,34 +3,68 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Paiements</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Paiements</h1>
-<table>
-    <thead>
-    <tr>
-        <th>Date</th>
-        <th>Montant</th>
-        <th>Statut</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="p : ${paiements}">
-        <td th:text="${p.datePaiement}">2024-01-01</td>
-        <td th:text="${p.montant}">500</td>
-        <td th:text="${p.statut}">paye</td>
-        <td><a th:href="@{'/paiements/' + ${p.id} + '/recu'}">Reçu PDF</a></td>
-    </tr>
-    </tbody>
-</table>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/immeubles}">Immeubles</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/unites}">Unités</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/locataires}">Locataires</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contrats}">Contrats</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/paiements}">Paiements</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<h2>Nouveau paiement</h2>
-<form th:action="@{'/paiements/contrat/' + ${contratId}}" th:object="${paiement}" method="post">
-    <label>Date : <input type="date" th:field="*{datePaiement}"/></label><br/>
-    <label>Montant : <input type="number" step="0.01" th:field="*{montant}"/></label><br/>
-    <button type="submit">Enregistrer</button>
-</form>
-<a th:href="@{/contrats}">Retour</a>
+<div class="container mt-4">
+    <h1>Paiements</h1>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Montant</th>
+            <th>Statut</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${paiements}">
+            <td th:text="${p.datePaiement}">2024-01-01</td>
+            <td th:text="${p.montant}">500</td>
+            <td th:text="${p.statut}">paye</td>
+            <td><a class="btn btn-sm btn-outline-secondary" th:href="@{'/paiements/' + ${p.id} + '/recu'}">Reçu PDF</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Nouveau paiement</h2>
+    <form th:action="@{'/paiements/contrat/' + ${contratId}}" th:object="${paiement}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Date
+                <input class="form-control" type="date" th:field="*{datePaiement}"/>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Montant
+                <input class="form-control" type="number" step="0.01" th:field="*{montant}"/>
+            </label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/contrats}">Retour</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

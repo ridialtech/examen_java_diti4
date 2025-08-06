@@ -3,15 +3,49 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Connexion locataire</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<h1>Connexion</h1>
-<div th:if="${erreur}">Email ou mot de passe invalide</div>
-<form th:action="@{/locataires/connexion}" th:object="${locataire}" method="post">
-    <label>Email : <input th:field="*{email}" /></label><br/>
-    <label>Mot de passe : <input type="password" th:field="*{motDePasse}" /></label><br/>
-    <button type="submit">Se connecter</button>
-</form>
-<a th:href="@{/locataires/inscription}">Pas de compte ? Inscription</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/immeubles}">Immeubles</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/unites}">Unités</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/locataires/connexion}">Locataires</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contrats}">Contrats</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/paiements}">Paiements</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4" style="max-width: 500px;">
+    <h1>Connexion</h1>
+    <div class="alert alert-danger" th:if="${erreur}">Email ou mot de passe invalide</div>
+    <form th:action="@{/locataires/connexion}" th:object="${locataire}" method="post" class="row g-3">
+        <div class="col-12">
+            <label class="form-label">Email
+                <input class="form-control" th:field="*{email}" />
+            </label>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Mot de passe
+                <input class="form-control" type="password" th:field="*{motDePasse}" />
+            </label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <a class="btn btn-link" th:href="@{/locataires/inscription}">Pas de compte ? Inscription</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
