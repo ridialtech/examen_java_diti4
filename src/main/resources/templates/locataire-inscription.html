@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Inscription locataire</title>
+</head>
+<body>
+<h1>Inscription</h1>
+<form th:action="@{/locataires/inscription}" th:object="${locataire}" method="post">
+    <label>Nom : <input th:field="*{nom}" /></label><br/>
+    <label>Email : <input th:field="*{email}" /></label><br/>
+    <label>Mot de passe : <input type="password" th:field="*{motDePasse}" /></label><br/>
+    <button type="submit">S'inscrire</button>
+</form>
+<a th:href="@{/locataires/connexion}">Déjà inscrit ? Connexion</a>
+</body>
+</html>
