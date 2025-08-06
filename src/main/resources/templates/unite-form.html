@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Unité de location</title>
+</head>
+<body>
+<h1 th:text="${unite.id == null ? 'Nouvelle unité' : 'Modifier unité'}"></h1>
+
+<form th:action="${unite.id} == null ? @{/immeubles/{immeubleId}/unites(immeubleId=${immeubleId})} : @{/immeubles/{immeubleId}/unites/{id}(immeubleId=${immeubleId}, id=${unite.id})}" th:object="${unite}" method="post">
+    <input type="hidden" th:if="${unite.id != null}" name="_method" value="put"/>
+    <label>Numéro : <input th:field="*{numero}" /></label><br/>
+    <label>Surface : <input th:field="*{surface}" type="number" step="0.01" /></label><br/>
+    <label>Pièces : <input th:field="*{pieces}" type="number" /></label><br/>
+    <label>Loyer : <input th:field="*{loyer}" type="number" step="0.01" /></label><br/>
+    <label>Statut : <input th:field="*{statut}" /></label><br/>
+    <button type="submit">Enregistrer</button>
+</form>
+
+<a th:href="@{'/immeubles/' + ${immeubleId} + '/unites'}">Retour</a>
+</body>
+</html>
