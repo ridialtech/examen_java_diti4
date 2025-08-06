@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface UniteLocationRepository extends JpaRepository<UniteLocation, Long> {
     List<UniteLocation> findByImmeubleId(Long immeubleId);
+    List<UniteLocation> findByStatut(String statut);
 }
 

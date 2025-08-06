@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Espace locataire</title>
+</head>
+<body>
+<h1>Offres disponibles</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Numéro</th>
+        <th>Surface</th>
+        <th>Pièces</th>
+        <th>Loyer</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="offre : ${offres}">
+        <td th:text="${offre.numero}">101</td>
+        <td th:text="${offre.surface}">50</td>
+        <td th:text="${offre.pieces}">2</td>
+        <td th:text="${offre.loyer}">500</td>
+        <td>
+            <form th:action="@{/locataires/demandes/{id}(id=${offre.id})}" method="post">
+                <button type="submit">Demander</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

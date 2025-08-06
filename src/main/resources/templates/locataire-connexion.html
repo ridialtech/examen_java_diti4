@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Connexion locataire</title>
+</head>
+<body>
+<h1>Connexion</h1>
+<div th:if="${erreur}">Email ou mot de passe invalide</div>
+<form th:action="@{/locataires/connexion}" th:object="${locataire}" method="post">
+    <label>Email : <input th:field="*{email}" /></label><br/>
+    <label>Mot de passe : <input type="password" th:field="*{motDePasse}" /></label><br/>
+    <button type="submit">Se connecter</button>
+</form>
+<a th:href="@{/locataires/inscription}">Pas de compte ? Inscription</a>
+</body>
+</html>
