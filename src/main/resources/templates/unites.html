@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Unités de location</title>
+</head>
+<body>
+<h1>Unités de location</h1>
+<a th:href="@{'/immeubles/' + ${immeubleId} + '/unites/new'}">Ajouter une unité</a>
+<table>
+    <thead>
+    <tr>
+        <th>Numéro</th>
+        <th>Surface</th>
+        <th>Pièces</th>
+        <th>Loyer</th>
+        <th>Statut</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="unite : ${unites}">
+        <td th:text="${unite.numero}">101</td>
+        <td th:text="${unite.surface}">50</td>
+        <td th:text="${unite.pieces}">2</td>
+        <td th:text="${unite.loyer}">500</td>
+        <td th:text="${unite.statut}">disponible</td>
+        <td>
+            <a th:href="@{'/immeubles/' + ${immeubleId} + '/unites/' + ${unite.id} + '/edit'}">Modifier</a>
+            <form th:action="@{'/immeubles/' + ${immeubleId} + '/unites/' + ${unite.id}}" method="post" style="display:inline">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Supprimer</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
