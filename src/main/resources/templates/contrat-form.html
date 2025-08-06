@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Nouveau contrat</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" th:href="@{/immeubles}">Immeubles</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/unites}">Unités</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/locataires}">Locataires</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/contrats}">Contrats</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/paiements}">Paiements</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1>Créer un contrat</h1>
+    <form th:action="@{/contrats}" th:object="${contrat}" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Locataire ID
+                <input class="form-control" name="locataireId"/>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Unité ID
+                <input class="form-control" name="uniteId"/>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Date début
+                <input class="form-control" type="date" th:field="*{dateDebut}"/>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Date fin
+                <input class="form-control" type="date" th:field="*{dateFin}"/>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Montant
+                <input class="form-control" type="number" step="0.01" th:field="*{montant}"/>
+            </label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/contrats}">Retour</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

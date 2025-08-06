@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Immeuble</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">Accueil</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/immeubles}">Immeubles</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/unites}">Unités</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/locataires}">Locataires</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/contrats}">Contrats</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/paiements}">Paiements</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/admin}">Admin</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <h1 th:text="${immeuble.id == null ? 'Nouvel immeuble' : 'Modifier immeuble'}"></h1>
+    <form th:action="${immeuble.id} == null ? @{/immeubles} : @{/immeubles/{id}(id=${immeuble.id})}" th:object="${immeuble}" method="post" class="row g-3">
+        <input type="hidden" th:if="${immeuble.id != null}" name="_method" value="put" />
+        <div class="col-md-6">
+            <label class="form-label">Nom
+                <input class="form-control" th:field="*{nom}" />
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Adresse
+                <input class="form-control" th:field="*{adresse}" />
+            </label>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Description
+                <textarea class="form-control" th:field="*{description}"></textarea>
+            </label>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Nombre d'unités
+                <input class="form-control" th:field="*{nombreUnites}" type="number" />
+            </label>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <a class="btn btn-secondary" th:href="@{/immeubles}">Retour</a>
+        </div>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
